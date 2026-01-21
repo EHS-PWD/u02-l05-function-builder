@@ -1,0 +1,62 @@
+name: Autograding Tests
+'on':
+  - push
+  - workflow_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    - name: Install dependencies
+      run: npm install
+    - name: 'Project 1: dailyMotivation Function'
+      id: daily-motivation
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 'Project 1: dailyMotivation Function'
+        command: npm test -- --testNamePattern="dailyMotivation"
+        timeout: 10
+        max-score: 25
+    - name: 'Project 2: favoriteNumber Function'
+      id: favorite-number
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 'Project 2: favoriteNumber Function'
+        command: npm test -- --testNamePattern="favoriteNumber"
+        timeout: 10
+        max-score: 25
+    - name: 'Project 3: calculateTotal Function'
+      id: calculate-total
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 'Project 3: calculateTotal Function'
+        command: npm test -- --testNamePattern="calculateTotal"
+        timeout: 10
+        max-score: 25
+    - name: 'Project 4: greetUser Function'
+      id: greet-user
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 'Project 4: greetUser Function'
+        command: npm test -- --testNamePattern="greetUser"
+        timeout: 10
+        max-score: 25
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        DAILY-MOTIVATION_RESULTS: "${{steps.daily-motivation.outputs.result}}"
+        FAVORITE-NUMBER_RESULTS: "${{steps.favorite-number.outputs.result}}"
+        CALCULATE-TOTAL_RESULTS: "${{steps.calculate-total.outputs.result}}"
+        GREET-USER_RESULTS: "${{steps.greet-user.outputs.result}}"
+      with:
+        runners: daily-motivation,favorite-number,calculate-total,greet-user
