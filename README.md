@@ -168,29 +168,3 @@ Before turning in, make sure:
 * [ ] Every function uses **return**
 * [ ] Each function has **at least 2 test calls**
 * [ ] Your code runs with **no errors**
-
----
-
-# ⭐ Challenge (Optional)
-
-If you finish early, try one:
-
-* Make one function return a **random message**
-* Rewrite one function using an **arrow function**
-* Add **input validation**
-* Connect one function to a button on a webpage
-
----
-
-## 🚀 Reminder
-
-Focus on:
-
-* clear function names
-* clean formatting
-* using parameters correctly
-* returning values (not just printing)
-
-You are practicing real software development skills.
-
-Good luck — and have fun building your functions! 💻🔥
