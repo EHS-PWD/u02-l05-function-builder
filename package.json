@@ -1,0 +1,12 @@
+{
+  "name": "jsb-u02-05",
+  "version": "1.0.0",
+  "description": "JavaScript Functions Lab - Function Builder Challenge",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
